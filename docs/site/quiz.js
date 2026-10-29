@@ -10,6 +10,7 @@ document.querySelectorAll('.sheet').forEach(function (sheet) {
       buttons[answer].classList.add('good');
       if (i !== answer) btn.classList.add('wrong');
       verdict.textContent = verdict.dataset[i === answer ? 'ok' : 'ko'];
+      why.classList.toggle('ko', i !== answer);
       why.hidden = false;
     });
   });

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MotoMastery – Get your Quebec motorcycle licence</title>
 <meta name="description" content="Lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test.">
-<meta name="theme-color" content="#1b1d21">
+<meta name="theme-color" content="#2979ff">
 <link rel="canonical" href="https://motomastery.app/en/">
 <link rel="icon" type="image/png" sizes="32x32" href="../site/favicon-32.png">
 <link rel="apple-touch-icon" href="../site/apple-touch-icon.png">
@@ -18,13 +18,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Overpass+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../site/style.css">
 </head>
 <body>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="../en/"><img src="../site/icon-192.png" alt="" width="32" height="32">MotoMastery</a>
+    <a class="brand" href="../en/"><img src="../site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
     <nav class="links">
       <a class="hide-sm" href="../en/#parcours">The route</a>
       <a class="hide-sm" href="../en/#essai">Try a question</a>
@@ -33,29 +33,37 @@
     </nav>
   </div>
 </header>
-<div class="lane" aria-hidden="true"></div>
 
 <section class="hero">
   <div class="wrap">
     <div class="copy">
-      <p class="mono">Motorcycle licence · Quebec · Knowledge test</p>
-      <h1>Your motorcycle licence, <span class="mark">well prepared.</span></h1>
+      <p class="hello">Quebec motorcycle licence</p>
+      <h1>Your motorcycle licence, well prepared.</h1>
       <p class="lead">Clear lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test, at your own pace.</p>
-      <div class="store"><span class="soon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M5 3.5v17l14-8.5z"/></svg><span><small>Coming soon on</small>Google Play</span></span></div>
+      <span class="pill store"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M5 3.5v17l14-8.5z"/></svg><span><small>Coming soon on</small>Google Play</span></span>
       <p class="note">No ads · Interface in French and English · Course content in French</p>
     </div>
-    <div class="scene">
-      <div class="sign" aria-hidden="true"></div>
+    <div class="visual">
+      <div class="float streak" aria-hidden="true">
+        <b><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8 0 4 3 7 7 7z"/></svg>5-day streak</b>
+        <div class="bar"><i style="width:70%"></i></div>
+        <small><span>Best: 7</span><span>5 d</span></small>
+      </div>
+      <div class="float ready" aria-hidden="true">
+        <b>Exam readiness</b>
+        <div class="bar"><i style="width:86%"></i></div>
+        <small><span>Almost there!</span><span>86%</span></small>
+      </div>
       <div class="phone"><img src="../site/01-accueil.webp" alt="MotoMastery home screen" width="540" height="1080"></div>
     </div>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="markers">
+  <div class="card stats">
     <div><b>10</b><span>modules</span></div>
     <div><b>80+</b><span>illustrated lessons</span></div>
-    <div><b>30</b><span>questions per mock exam</span></div>
+    <div><b>30</b><span>questions per exam</span></div>
     <div><b>0</b><span>ads</span></div>
   </div>
 </div>
@@ -63,55 +71,50 @@
 <section id="parcours">
   <div class="wrap">
     <div class="head">
-      <p class="mono">The route</p>
-      <h2>Three stages to the test.</h2>
+      <span class="label">The route</span>
+      <h2>Three stages to the test</h2>
       <p>Learn, check what you know, then practise in real exam conditions.</p>
     </div>
 
-    <div class="route">
-      <article class="stop">
-        <div class="pin" aria-hidden="true"><b>1</b></div>
-        <div>
-          <p class="mono">Stage 1</p>
-          <h3>Learn</h3>
-          <p>Everything the test covers, split into short illustrated lessons.</p>
-          <ul>
-            <li><strong>Complete lessons</strong><span>Gear, handling, lines, traffic, weather, mechanics, emergencies and regulations.</span></li>
-            <li><strong>Read or listen</strong><span>Every lesson can be read aloud, for another way to review.</span></li>
-          </ul>
-        </div>
-        <figure><img src="../site/02-lecon.webp" alt="An illustrated lesson in the app" width="540" height="1080" loading="lazy"><figcaption>Illustrated lessons</figcaption></figure>
-      </article>
+    <article class="step">
+      <div class="card">
+        <div class="top"><span class="label">Stage 1</span><span>1 / 3</span></div>
+        <h3>Learn</h3>
+        <p>Everything the test covers, split into short illustrated lessons.</p>
+        <div class="segments" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        <div class="row"><span class="tile"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></svg></span><div><strong>Complete lessons</strong><span>Gear, handling, lines, traffic, weather, mechanics, emergencies and regulations.</span></div></div>
+        <div class="row"><span class="tile amber"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><div><strong>Read or listen</strong><span>Every lesson can be read aloud, for another way to review.</span></div></div>
+      </div>
+      <figure><img src="../site/02-lecon.webp" alt="An illustrated lesson in the app" width="540" height="1080" loading="lazy"></figure>
+    </article>
 
-      <article class="stop">
-        <div class="pin" aria-hidden="true"><b>2</b></div>
-        <div>
-          <p class="mono">Stage 2</p>
-          <h3>Check</h3>
-          <p>A quiz at the end of lessons and modules, with an explanation for every answer.</p>
-          <ul>
-            <li><strong>Explained quizzes</strong><span>You know right away why an answer is the right one.</span></li>
-            <li><strong>"To review"</strong><span>Your mistakes are set aside: review them until you master them.</span></li>
-          </ul>
-        </div>
-        <figure><img src="../site/03-quiz.webp" alt="A quiz in the app" width="540" height="1080" loading="lazy"><figcaption>Explained quizzes</figcaption></figure>
-      </article>
+    <article class="step">
+      <div class="card">
+        <div class="top"><span class="label">Stage 2</span><span>2 / 3</span></div>
+        <h3>Check</h3>
+        <p>A quiz at the end of lessons and modules, with an explanation for every answer.</p>
+        <div class="segments" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div>
+        <div class="row"><span class="tile green"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><div><strong>Explained quizzes</strong><span>You know right away why an answer is the right one.</span></div></div>
+        <div class="row"><span class="tile purple"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span><div><strong>To review</strong><span>Your mistakes are set aside: review them until you master them.</span></div></div>
+      </div>
+      <figure><img src="../site/03-quiz.webp" alt="A quiz in the app" width="540" height="1080" loading="lazy"></figure>
+    </article>
 
-      <article class="stop">
-        <div class="pin" aria-hidden="true"><b>3</b></div>
-        <div>
-          <p class="mono">Stage 3</p>
-          <h3>Practise</h3>
-          <p>Topic exams and a timed mock exam, with different questions each time.</p>
-          <ul>
-            <li><strong>Detailed corrections</strong><span>Every question reviewed at the end of the exam.</span></li>
-            <li><strong>Stay motivated</strong><span>Progress by module, study streaks and reminders you can turn off.</span></li>
-          </ul>
-        </div>
-        <figure><img src="../site/05-examen.webp" alt="A mock exam in the app" width="540" height="1080" loading="lazy"><figcaption>Mock exams</figcaption></figure>
-      </article>
+    <article class="step">
+      <div class="card">
+        <div class="top"><span class="label">Stage 3</span><span>3 / 3</span></div>
+        <h3>Practise</h3>
+        <p>Topic exams and a timed mock exam, with different questions each time.</p>
+        <div class="segments" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <div class="row"><span class="tile"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><div><strong>Detailed corrections</strong><span>Every question reviewed at the end of the exam.</span></div></div>
+        <div class="row"><span class="tile amber"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8 0 4 3 7 7 7z"/></svg></span><div><strong>Stay motivated</strong><span>Progress by module, study streaks and reminders you can turn off.</span></div></div>
+      </div>
+      <figure><img src="../site/05-examen.webp" alt="A mock exam in the app" width="540" height="1080" loading="lazy"></figure>
+    </article>
 
-      <div class="finish"><div class="flag" aria-hidden="true"><i></i></div><strong>Finish line: the knowledge test.</strong></div>
+    <div class="card ready-card">
+      <div>Exam readiness<span>100%</span></div>
+      <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
     </div>
   </div>
 </section>
@@ -119,35 +122,38 @@
 <section class="try" id="essai">
   <div class="wrap">
     <div class="head">
-      <p class="mono">Try it</p>
-      <h2>One question, right now.</h2>
+      <span class="label">Try it</span>
+      <h2>One question, right now</h2>
       <p>Taken from our mock exams. Pick your answer.</p>
     </div>
-    <div class="sheet" data-answer="1">
-      <div class="top mono"><span>Mock exam · Handling</span><span>Q 08 / 30</span></div>
+    <div class="card quiz sheet" data-answer="1">
+      <div class="bar-top"><span>Mock exam</span><span class="timer"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>20:48</span></div>
+      <div class="segments" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="count">Question 8 of 30</p>
+      <span class="tag">Single answer</span>
       <p class="q">At 60 km/h, to start a left turn, you push on…</p>
       <div class="opts">
-        <button type="button"><span class="k">A</span>The right handgrip</button>
-        <button type="button"><span class="k">B</span>The left handgrip</button>
-        <button type="button"><span class="k">C</span>Both handgrips at once</button>
+        <button type="button">The right handgrip</button>
+        <button type="button">The left handgrip</button>
+        <button type="button">Both handgrips at once</button>
       </div>
-      <p class="why" hidden aria-live="polite"><strong data-ok="Correct!" data-ko="Not quite: it's B."></strong>Above about 25 km/h, you countersteer: pushing the left handgrip leans the motorcycle to the left.</p>
+      <p class="why" hidden aria-live="polite"><strong data-ok="Correct." data-ko="Wrong answer."></strong>Above about 25 km/h, you countersteer: pushing the left handgrip leans the motorcycle to the left.</p>
     </div>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="info-sign">
-    <div class="i" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
-    <div><strong>Your data, respected.</strong><p>Your progress is saved in your account and follows you on all your devices. You can delete your account and all your data at any time, right from the app. <a href="../privacy/en/">Learn more</a></p></div>
+  <div class="card data">
+    <span class="tile"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+    <div><strong>Your data, respected</strong><p>Your progress follows you on all your devices. You can delete your account and all your data at any time, right from the app.</p></div>
+    <a class="pill pill-outline" href="../privacy/en/">Learn more</a>
   </div>
 </div>
 
 <footer class="site">
-  <div class="lane" aria-hidden="true"></div>
   <div class="wrap">
     <div>
-      <a class="brand" href="../en/"><img src="../site/icon-192.png" alt="" width="32" height="32">MotoMastery</a>
+      <a class="brand" href="../en/"><img src="../site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
       <p class="about">Get ready for Quebec's motorcycle knowledge test: lessons, quizzes and mock exams.</p>
     </div>
     <div>
