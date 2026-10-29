@@ -102,6 +102,7 @@ a { color:var(--primary); }
 
 /* Les trois étapes */
 .step { display:grid; grid-template-columns:1fr 280px; gap:56px; align-items:center; max-width:920px; margin:0 auto 56px; }
+.step:last-of-type { margin-bottom:0; }
 .step:nth-of-type(even) { grid-template-columns:280px 1fr; }
 .step:nth-of-type(even) figure { order:-1; }
 .step .card { padding:28px; }
@@ -116,9 +117,6 @@ a { color:var(--primary); }
 .row span { display:block; color:var(--muted); font-size:15px; line-height:1.45; }
 .step figure { margin:0; }
 .step figure img { border-radius:30px; border:8px solid #0f1a33; box-shadow:var(--shadow-lg); }
-.ready-card { max-width:520px; margin:0 auto; padding:22px 24px; }
-.ready-card div { display:flex; justify-content:space-between; font-weight:700; font-size:18px; margin-bottom:10px; }
-.ready-card div span { color:var(--highlight); }
 @media (max-width:820px) {
   .step, .step:nth-of-type(even) { grid-template-columns:1fr; gap:24px; margin-bottom:48px; }
   .step:nth-of-type(even) figure { order:0; }
