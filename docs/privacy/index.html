@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Politique de confidentialité – MotoMastery</title>
 <meta name="description" content="Quels renseignements MotoMastery recueille, pourquoi, et comment exercer vos droits.">
-<meta name="theme-color" content="#2979ff">
+<meta name="theme-color" content="#1b1d21">
 <link rel="canonical" href="https://motomastery.app/privacy/">
 <link rel="icon" type="image/png" sizes="32x32" href="../site/favicon-32.png">
 <link rel="apple-touch-icon" href="../site/apple-touch-icon.png">
@@ -18,129 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#f5f7fb; --surface:#ffffff; --text:#141a26; --soft:#5d6878; --line:#e3e8f0;
-  --brand:#2979ff; --brand-ink:#1a5fe0; --brand-soft:#eaf1ff; --accent:#ff9100;
-  --hero-1:#2979ff; --hero-2:#1450c8; --shadow:0 18px 40px -18px rgba(20,40,90,.28);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:#0d1118; --surface:#151b26; --text:#e8edf5; --soft:#9aa6b8; --line:#253045;
-    --brand:#5b9bff; --brand-ink:#8db8ff; --brand-soft:#18243a; --accent:#ffab40;
-    --hero-1:#1f5fd6; --hero-2:#0e2f7a; --shadow:0 18px 40px -18px rgba(0,0,0,.6);
-  }
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { margin:0; background:var(--bg); color:var(--text);
-  font:17px/1.65 "DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  overflow-wrap:anywhere; -webkit-font-smoothing:antialiased; }
-img { max-width:100%; height:auto; display:block; }
-a { color:var(--brand); }
-.wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-
-/* En-tête */
-.nav { position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
-.nav .wrap { display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px; }
-.brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:19px; color:var(--text); text-decoration:none; }
-.brand img { width:34px; height:34px; border-radius:9px; }
-.links { display:flex; align-items:center; gap:18px; font-size:15px; }
-.links a { color:var(--soft); text-decoration:none; font-weight:500; }
-.links a:hover { color:var(--text); }
-.links .lang { border:1px solid var(--line); border-radius:999px; padding:4px 12px; color:var(--text); }
-.nav, .brand, .links a { overflow-wrap:normal; white-space:nowrap; }
-@media (max-width:640px) { .links .hide-sm { display:none; } .links { gap:12px; } }
-
-/* Accueil */
-.hero { background:linear-gradient(135deg,var(--hero-1),var(--hero-2)); color:#fff; overflow:hidden; }
-.hero .wrap { display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center; padding-top:64px; padding-bottom:0; }
-.hero h1 { font-size:clamp(36px,5.2vw,58px); line-height:1.08; letter-spacing:-.02em; margin:0 0 18px; }
-.hero p.lead { font-size:19px; color:rgba(255,255,255,.88); margin:0 0 28px; max-width:30em; }
-.hero .copy { padding-bottom:64px; }
-.badge { display:inline-flex; align-items:center; gap:10px; background:#fff; color:#10306f;
-  border-radius:14px; padding:12px 20px; font-weight:700; font-size:16px; }
-.badge small { display:block; font-weight:500; font-size:12px; color:#5d6878; line-height:1.2; }
-.badge svg { color:var(--accent); }
-.hero .note { margin-top:14px; font-size:14px; color:rgba(255,255,255,.75); }
-.phone { justify-self:center; width:min(300px,78vw); border-radius:34px 34px 0 0; padding:10px 10px 0;
-  background:#0b1430; box-shadow:0 30px 60px -20px rgba(0,0,0,.55); }
-.phone img { width:100%; border-radius:26px 26px 0 0; aspect-ratio:1/1.55; object-fit:cover; object-position:top; }
-@media (max-width:820px) {
-  .hero .wrap { grid-template-columns:1fr; padding-top:44px; gap:8px; }
-  .hero .copy { padding-bottom:32px; }
-}
-
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:-0px auto 0; padding:28px 20px; }
-.stat { text-align:center; }
-.stat b { display:block; font-size:28px; color:var(--brand); line-height:1.2; }
-.stat span { color:var(--soft); font-size:15px; }
-@media (max-width:640px) { .stats { grid-template-columns:repeat(2,1fr); row-gap:20px; } }
-
-section.block { padding:56px 0; }
-section.block h2 { font-size:clamp(26px,3.4vw,36px); line-height:1.2; letter-spacing:-.01em; margin:0 0 10px; text-align:center; }
-section.block p.sub { text-align:center; color:var(--soft); margin:0 auto 36px; max-width:36em; }
-.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-@media (max-width:900px) { .grid { grid-template-columns:repeat(2,1fr); } }
-@media (max-width:600px) { .grid { grid-template-columns:1fr; } }
-.feature { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:24px; }
-.feature .ic { width:46px; height:46px; border-radius:13px; display:grid; place-items:center;
-  background:var(--brand-soft); color:var(--brand); margin-bottom:14px; }
-.feature h3 { margin:0 0 6px; font-size:19px; }
-.feature p { margin:0; color:var(--soft); font-size:16px; }
-
-.shots { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; padding:8px 20px 20px;
-  justify-content:center; }
-.shots figure { margin:0; flex:0 0 220px; scroll-snap-align:center; text-align:center; }
-.shots img { border-radius:22px; border:1px solid var(--line); box-shadow:var(--shadow); background:#fff; }
-.shots figcaption { margin-top:12px; font-size:15px; color:var(--soft); font-weight:500; }
-@media (max-width:1000px) { .shots { justify-content:flex-start; } }
-
-.notice { background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:22px 24px;
-  color:var(--soft); font-size:15px; max-width:760px; margin:0 auto; }
-.notice strong { color:var(--text); }
-
-/* Pages légales */
-.doc-head { background:linear-gradient(135deg,var(--hero-1),var(--hero-2)); color:#fff; }
-.doc-head .wrap { max-width:800px; padding-top:44px; padding-bottom:84px; }
-.doc-head .kicker { font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.75); }
-.doc-head h1 { font-size:clamp(28px,4vw,42px); line-height:1.15; margin:6px 0 0; letter-spacing:-.01em; }
-.doc { max-width:800px; margin:-56px auto 0; padding:0 20px; }
-.doc .paper { background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:36px 40px; box-shadow:var(--shadow); }
-@media (max-width:600px) { .doc .paper { padding:26px 20px; } }
-.doc .paper > h1:first-child { display:none; }
-.doc h2 { font-size:22px; margin:36px 0 10px; padding-top:20px; border-top:1px solid var(--line); }
-.doc .paper > h2:first-of-type { margin-top:20px; }
-.doc h3 { font-size:18px; margin:24px 0 6px; }
-.doc p, .doc li { color:var(--text); }
-.doc ul, .doc ol { padding-left:22px; }
-.doc li { margin:6px 0; }
-.doc li::marker { color:var(--brand); }
-.doc em { color:var(--soft); }
-.doc .paper > p:first-of-type em:only-child { display:inline-block; background:var(--brand-soft); color:var(--brand-ink);
-  font-style:normal; font-size:14px; font-weight:600; border-radius:999px; padding:4px 12px; }
-.steps { counter-reset:step; list-style:none; padding-left:0 !important; }
-.steps li { counter-increment:step; position:relative; padding-left:46px; margin:14px 0; min-height:32px; }
-.steps li::before { content:counter(step); position:absolute; left:0; top:-2px; width:32px; height:32px; border-radius:50%;
-  background:var(--brand); color:#fff; font-weight:700; font-size:15px; display:grid; place-items:center; }
-.callout { background:var(--brand-soft); border-radius:14px; padding:16px 18px; color:var(--text); }
-.callout a { font-weight:600; }
-.warn { background:color-mix(in srgb, var(--accent) 14%, var(--surface)); border-radius:14px; padding:16px 18px; }
-
-/* Pied de page */
-footer.site { margin-top:64px; border-top:1px solid var(--line); background:var(--surface); }
-footer.site .wrap { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:28px; padding-top:40px; padding-bottom:28px; }
-footer.site h4 { margin:0 0 10px; font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--soft); }
-footer.site ul { list-style:none; padding:0; margin:0; }
-footer.site li { margin:6px 0; font-size:15px; }
-footer.site li a { color:var(--text); text-decoration:none; }
-footer.site li a:hover { color:var(--brand); }
-footer.site .about { color:var(--soft); font-size:15px; max-width:26em; }
-footer.site .legal { grid-column:1/-1; border-top:1px solid var(--line); padding-top:18px; font-size:13px; color:var(--soft); }
-@media (max-width:700px) { footer.site .wrap { grid-template-columns:1fr; } }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Overpass+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site/style.css">
 </head>
 <body>
 <header class="nav">
@@ -153,6 +32,7 @@ footer.site .legal { grid-column:1/-1; border-top:1px solid var(--line); padding
     </nav>
   </div>
 </header>
+<div class="lane" aria-hidden="true"></div>
 
 <div class="doc-head"><div class="wrap"><div class="kicker">MotoMastery</div><h1>Politique de confidentialité</h1></div></div>
 <main class="doc"><article class="paper">
