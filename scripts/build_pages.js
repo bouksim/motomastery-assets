@@ -253,9 +253,9 @@ function page({ lang, title, description, body, root, switchTo, canonical }) {
 <body>
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="${root}"><img src="${root}site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
+    <a class="brand" href="${root}${p}"><img src="${root}site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
     <nav class="links">
-      <a class="hide-sm" href="${root}#fonctionnalites">${L.features}</a>
+      <a class="hide-sm" href="${root}${p}#fonctionnalites">${L.features}</a>
       <a href="${root}privacy/${p}">${L.privacy}</a>
       ${other}
     </nav>
@@ -265,7 +265,7 @@ ${body}
 <footer class="site">
   <div class="wrap">
     <div>
-      <a class="brand" href="${root}"><img src="${root}site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
+      <a class="brand" href="${root}${p}"><img src="${root}site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
       <p class="about">${L.about}</p>
     </div>
     <div>
@@ -337,12 +337,12 @@ const deleteFr = `
 <p class="callout">Écrivez à <a href="mailto:${contact}?subject=Suppression%20de%20mon%20compte%20MotoMastery">${contact}</a> depuis l'adresse email de votre compte, avec pour objet « Suppression de mon compte ». Nous supprimons le compte dans un délai de 30 jours et vous le confirmons par email.</p>
 <h2>Données supprimées</h2>
 <ul>
-  <li>votre compte (adresse email, nom, mot de passe) ;</li>
-  <li>votre profil (pays, province) ;</li>
-  <li>toute votre progression : leçons, quiz, examens, séries, leçons « À revoir » et questions manquées ;</li>
-  <li>l'historique des notifications et les données enregistrées sur votre appareil.</li>
+  <li>Votre compte (adresse email, nom, mot de passe)</li>
+  <li>Votre profil (pays, province)</li>
+  <li>Toute votre progression : leçons, quiz, examens, séries, leçons « À revoir » et questions manquées</li>
+  <li>L'historique des notifications et les données enregistrées sur votre appareil</li>
 </ul>
-<p class="warn">Aucune donnée n'est conservée après la suppression, sauf les copies techniques de nos fournisseurs (Google Firebase), qui disparaissent selon leurs propres délais. <strong>La suppression est définitive.</strong></p>
+<p class="warn">Aucune donnée n'est conservée après la suppression. <strong>La suppression est définitive.</strong></p>
 <p>Voir aussi la <a href="../privacy/">politique de confidentialité</a>.</p>
 `;
 const deleteEn = `
@@ -358,12 +358,12 @@ const deleteEn = `
 <p class="callout">Write to <a href="mailto:${contact}?subject=Delete%20my%20MotoMastery%20account">${contact}</a> from your account's email address, with the subject "Delete my account". We delete the account within 30 days and confirm by email.</p>
 <h2>Data deleted</h2>
 <ul>
-  <li>your account (email address, name, password);</li>
-  <li>your profile (country, province);</li>
-  <li>all your progress: lessons, quizzes, exams, streaks, "To review" lessons and missed questions;</li>
-  <li>notification history and data stored on your device.</li>
+  <li>Your account (email address, name, password)</li>
+  <li>Your profile (country, province)</li>
+  <li>All your progress: lessons, quizzes, exams, streaks, "To review" lessons and missed questions</li>
+  <li>Notification history and data stored on your device</li>
 </ul>
-<p class="warn">No data is kept after deletion, except our providers' technical copies (Google Firebase), which are removed according to their own schedules. <strong>Deletion is permanent.</strong></p>
+<p class="warn">No data is kept after deletion. <strong>Deletion is permanent.</strong></p>
 <p>See also the <a href="../../privacy/en/">privacy policy</a>.</p>
 `;
 write("delete-account/index.html", page({
@@ -385,72 +385,132 @@ write("delete-account/en/index.html", page({
   canonical: "delete-account/en/",
 }));
 
-// Accueil (français : le contenu de l'app est en français)
+// Accueil (le contenu des cours est en français, l'interface en français et en anglais)
 const feature = (ic, h, p) =>
   `<div class="feature"><div class="ic">${icons[ic]}</div><h3>${h}</h3><p>${p}</p></div>`;
-const shot = (file, caption) =>
-  `<figure><img src="site/${file}.webp" alt="${escape(caption)}" width="540" height="1080" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
+const shot = (root, file, caption) =>
+  `<figure><img src="${root}site/${file}.webp" alt="${escape(caption)}" width="540" height="1080" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
 
-write("index.html", page({
-  lang: "fr",
-  title: "MotoMastery – Prépare ton permis moto au Québec",
-  description: "Cours, quiz et examens blancs pour réussir l'examen théorique du permis moto au Québec.",
-  root: "./",
-  canonical: "",
-  body: `
+const home = {
+  fr: {
+    title: "MotoMastery – Prépare ton permis moto au Québec",
+    description: "Cours, quiz et examens blancs pour réussir l'examen théorique du permis moto au Québec.",
+    h1: "Ton permis moto, bien préparé.",
+    lead: "Des cours clairs, des quiz et des examens blancs pour réussir l'examen théorique du permis moto au Québec, à ton rythme.",
+    soon: "Bientôt sur",
+    note: "Sans publicité · Interface en français et en anglais",
+    heroAlt: "Écran d'accueil de MotoMastery",
+    stats: [["10", "modules"], ["80+", "leçons illustrées"], ["30", "questions par examen blanc"], ["0", "publicité"]],
+    featuresH: "Tout pour réussir l'examen théorique",
+    featuresSub: "Apprends, vérifie ce que tu sais, puis entraîne-toi dans les conditions de l'examen.",
+    features: [
+      ["book", "Des cours complets", "Équipement, maniement, trajectoires, circulation, météo, mécanique, urgences et réglementation, en leçons courtes et illustrées."],
+      ["check", "Des quiz pour valider", "Un quiz à la fin des leçons et des modules, avec l'explication de chaque réponse."],
+      ["exam", "Des examens blancs", "Examens thématiques et examen blanc chronométré, avec des questions différentes à chaque essai."],
+      ["repeat", "« À revoir »", "Tes erreurs sont gardées de côté : révise-les jusqu'à ce que tu les maîtrises."],
+      ["flame", "Reste motivé", "Progression par module, série de jours d'étude et rappels que tu peux désactiver."],
+      ["sound", "À lire ou à écouter", "Chaque leçon peut être lue à voix haute, pour réviser autrement."],
+    ],
+    shotsH: "Aperçu de l'application",
+    shotsSub: "Une interface simple, en thème clair ou sombre.",
+    shots: [["02-lecon", "Leçons illustrées"], ["03-quiz", "Quiz expliqués"], ["05-examen", "Examens blancs"], ["06-resultat", "Correction détaillée"]],
+    dataH: "Tes données respectées.",
+    data: "Ta progression est sauvegardée dans ton compte et te suit sur tous tes appareils. Tu peux supprimer ton compte et toutes tes données à tout moment, directement depuis l'application.",
+    more: "En savoir plus",
+  },
+  en: {
+    title: "MotoMastery – Get your Quebec motorcycle licence",
+    description: "Lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test.",
+    h1: "Your motorcycle licence, well prepared.",
+    lead: "Clear lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test, at your own pace.",
+    soon: "Coming soon on",
+    note: "No ads · Interface in French and English · Course content in French",
+    heroAlt: "MotoMastery home screen",
+    stats: [["10", "modules"], ["80+", "illustrated lessons"], ["30", "questions per mock exam"], ["0", "ads"]],
+    featuresH: "Everything to pass the knowledge test",
+    featuresSub: "Learn, check what you know, then practise in real exam conditions.",
+    features: [
+      ["book", "Complete lessons", "Gear, handling, lines, traffic, weather, mechanics, emergencies and regulations, in short illustrated lessons."],
+      ["check", "Quizzes to check yourself", "A quiz at the end of lessons and modules, with an explanation for every answer."],
+      ["exam", "Mock exams", "Topic exams and a timed mock exam, with different questions each time."],
+      ["repeat", "\"To review\"", "Your mistakes are set aside: review them until you master them."],
+      ["flame", "Stay motivated", "Progress by module, study streaks and reminders you can turn off."],
+      ["sound", "Read or listen", "Every lesson can be read aloud, for another way to review."],
+    ],
+    shotsH: "A look at the app",
+    shotsSub: "A simple interface, in light or dark theme.",
+    shots: [["02-lecon", "Illustrated lessons"], ["03-quiz", "Explained quizzes"], ["05-examen", "Mock exams"], ["06-resultat", "Detailed corrections"]],
+    dataH: "Your data, respected.",
+    data: "Your progress is saved in your account and follows you on all your devices. You can delete your account and all your data at any time, right from the app.",
+    more: "Learn more",
+  },
+};
+
+function homeBody(lang, root) {
+  const H = home[lang];
+  const p = lang === "fr" ? "" : "en/";
+  return `
 <section class="hero">
   <div class="wrap">
     <div class="copy">
-      <h1>Ton permis moto, bien préparé.</h1>
-      <p class="lead">Des cours clairs, des quiz et des examens blancs pour réussir l'examen théorique du permis moto au Québec, à ton rythme.</p>
-      <span class="badge">${icons.play}<span><small>Bientôt sur</small>Google Play</span></span>
-      <p class="note">Sans publicité · Interface en français et en anglais</p>
+      <h1>${H.h1}</h1>
+      <p class="lead">${H.lead}</p>
+      <span class="badge">${icons.play}<span><small>${H.soon}</small>Google Play</span></span>
+      <p class="note">${H.note}</p>
     </div>
-    <div class="phone"><img src="site/01-accueil.webp" alt="Écran d'accueil de MotoMastery" width="540" height="1080"></div>
+    <div class="phone"><img src="${root}site/01-accueil.webp" alt="${H.heroAlt}" width="540" height="1080"></div>
   </div>
 </section>
 
 <div class="wrap stats">
-  <div class="stat"><b>10</b><span>modules</span></div>
-  <div class="stat"><b>80+</b><span>leçons illustrées</span></div>
-  <div class="stat"><b>30</b><span>questions par examen blanc</span></div>
-  <div class="stat"><b>0</b><span>publicité</span></div>
+  ${H.stats.map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("\n  ")}
 </div>
 
 <section class="block" id="fonctionnalites">
   <div class="wrap">
-    <h2>Tout pour réussir l'examen théorique</h2>
-    <p class="sub">Apprends, vérifie ce que tu sais, puis entraîne-toi dans les conditions de l'examen.</p>
+    <h2>${H.featuresH}</h2>
+    <p class="sub">${H.featuresSub}</p>
     <div class="grid">
-      ${feature("book", "Des cours complets", "Équipement, maniement, trajectoires, circulation, météo, mécanique, urgences et réglementation, en leçons courtes et illustrées.")}
-      ${feature("check", "Des quiz pour valider", "Un quiz à la fin des leçons et des modules, avec l'explication de chaque réponse.")}
-      ${feature("exam", "Des examens blancs", "Examens thématiques et examen blanc chronométré, avec des questions différentes à chaque essai.")}
-      ${feature("repeat", "« À revoir »", "Tes erreurs sont gardées de côté : révise-les jusqu'à ce que tu les maîtrises.")}
-      ${feature("flame", "Reste motivé", "Progression par module, série de jours d'étude et rappels que tu peux désactiver.")}
-      ${feature("sound", "À lire ou à écouter", "Chaque leçon peut être lue à voix haute, pour réviser autrement.")}
+      ${H.features.map(([ic, h, d]) => feature(ic, h, d)).join("\n      ")}
     </div>
   </div>
 </section>
 
 <section class="block" style="padding-top:8px">
   <div class="wrap">
-    <h2>Aperçu de l'application</h2>
-    <p class="sub">Une interface simple, en thème clair ou sombre.</p>
+    <h2>${H.shotsH}</h2>
+    <p class="sub">${H.shotsSub}</p>
   </div>
   <div class="shots">
-    ${shot("02-lecon", "Leçons illustrées")}
-    ${shot("03-quiz", "Quiz expliqués")}
-    ${shot("05-examen", "Examens blancs")}
-    ${shot("06-resultat", "Correction détaillée")}
+    ${H.shots.map(([f, c]) => shot(root, f, c)).join("\n    ")}
   </div>
 </section>
 
 <section class="block" style="padding-top:8px">
   <div class="wrap">
-    <div class="notice">${icons.lock.replace('width="24" height="24"', 'width="20" height="20" style="vertical-align:-4px;margin-right:6px"')}<strong>Tes données respectées.</strong> Ta progression est sauvegardée dans ton compte et te suit sur tous tes appareils. Tu peux supprimer ton compte et toutes tes données à tout moment, directement depuis l'application. <a href="privacy/">En savoir plus</a></div>
+    <div class="notice">${icons.lock.replace('width="24" height="24"', 'width="20" height="20" style="vertical-align:-4px;margin-right:6px"')}<strong>${H.dataH}</strong> ${H.data} <a href="${root}privacy/${p}">${H.more}</a></div>
   </div>
 </section>
-`,
+`;
+}
+
+write("index.html", page({
+  lang: "fr",
+  title: home.fr.title,
+  description: home.fr.description,
+  root: "./",
+  switchTo: "en/",
+  canonical: "",
+  body: homeBody("fr", "./"),
+}));
+write("en/index.html", page({
+  lang: "en",
+  title: home.en.title,
+  description: home.en.description,
+  root: "../",
+  switchTo: "../",
+  canonical: "en/",
+  body: homeBody("en", "../"),
 }));
 
 // Pas de traitement Jekyll : les fichiers sont servis tels quels
