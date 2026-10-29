@@ -76,21 +76,10 @@ a { color:var(--primary); }
 .visual { position:relative; justify-self:center; width:min(310px,76vw); }
 .visual .phone { border-radius:36px 36px 0 0; padding:10px 10px 0; background:#0f1a33; box-shadow:var(--shadow-lg); }
 .visual .phone img { border-radius:28px 28px 0 0; aspect-ratio:1/1.5; object-fit:cover; object-position:top; }
-.float { position:absolute; z-index:1; background:var(--surface); color:var(--text); border-radius:18px;
-  padding:14px 16px; box-shadow:var(--shadow-lg); width:220px; font-size:14px; }
-.float b { display:flex; align-items:center; gap:8px; font-size:16px; margin-bottom:8px; }
-.float b svg { color:var(--highlight); }
-.float small { display:flex; justify-content:space-between; color:var(--muted); margin-top:6px; }
-.float.streak { left:-130px; top:90px; }
-.float.ready { right:-70px; bottom:70px; width:190px; }
-@media (max-width:1000px) { .float.streak { left:-70px; } .float.ready { right:-30px; } }
 @media (max-width:820px) {
   .hero { border-radius:0 0 36px 36px; }
   .hero .wrap { grid-template-columns:1fr; padding-top:40px; gap:8px; }
   .hero .copy { padding-bottom:28px; }
-  .float { width:180px; padding:12px 14px; font-size:13px; }
-  .float.streak { left:-24px; top:40px; }
-  .float.ready { right:-20px; bottom:110px; width:160px; }
 }
 
 /* Chiffres clés : carte qui chevauche l'en-tête */
