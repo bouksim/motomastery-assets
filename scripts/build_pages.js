@@ -88,13 +88,13 @@ const t = {
   fr: {
     privacy: "Confidentialité", del: "Supprimer mon compte", route: "Le parcours", tryIt: "Une question",
     about: "Prépare l'examen théorique du permis moto au Québec : cours, quiz et examens blancs.",
-    legalH: "Légal", contactH: "Contact", privacyFull: "Politique de confidentialité",
+    legalH: "Légal", contactH: "Contact", privacyFull: "Politique de confidentialité", terms: "Conditions de vente",
     disclaimer: "MotoMastery est une application indépendante, non affiliée à la Société de l'assurance automobile du Québec (SAAQ) ni à aucun organisme gouvernemental.",
   },
   en: {
     privacy: "Privacy", del: "Delete my account", route: "The route", tryIt: "Try a question",
     about: "Get ready for Quebec's motorcycle knowledge test: lessons, quizzes and mock exams.",
-    legalH: "Legal", contactH: "Contact", privacyFull: "Privacy policy",
+    legalH: "Legal", contactH: "Contact", privacyFull: "Privacy policy", terms: "Terms of sale",
     disclaimer: "MotoMastery is an independent app, not affiliated with the Société de l'assurance automobile du Québec (SAAQ) or any government agency.",
   },
 };
@@ -154,6 +154,7 @@ ${body}
       <h4>${L.legalH}</h4>
       <ul>
         <li><a href="${root}privacy/${p}">${L.privacyFull}</a></li>
+        <li><a href="${root}terms/${p}">${L.terms}</a></li>
         <li><a href="${root}delete-account/${p}">${L.del}</a></li>
       </ul>
     </div>
@@ -204,6 +205,26 @@ write("privacy/en/index.html", page({
   root: "../../",
   switchTo: "../",
   canonical: "privacy/en/",
+}));
+
+// Conditions de vente du Premium (#14)
+write("terms/index.html", page({
+  lang: "fr",
+  title: "Conditions de vente – MotoMastery",
+  description: "Conditions de l'achat de MotoMastery Premium : achat unique, accès à vie, remboursement.",
+  body: legal("MotoMastery", "Conditions de vente", markdown(read("terms_fr.md"))),
+  root: "../",
+  switchTo: "en/",
+  canonical: "terms/",
+}));
+write("terms/en/index.html", page({
+  lang: "en",
+  title: "Terms of sale – MotoMastery",
+  description: "Terms for buying MotoMastery Premium: one-time purchase, lifetime access, refunds.",
+  body: legal("MotoMastery", "Terms of sale", markdown(read("terms_en.md"))),
+  root: "../../",
+  switchTo: "../",
+  canonical: "terms/en/",
 }));
 
 // Suppression du compte (exigée par Google Play et l'App Store)
