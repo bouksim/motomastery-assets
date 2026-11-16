@@ -223,9 +223,12 @@ const deleteFr = `
   <li>Votre compte (adresse email, nom, mot de passe)</li>
   <li>Votre profil (pays, province)</li>
   <li>Toute votre progression : leçons, quiz, examens, séries, leçons « À revoir » et questions manquées</li>
+  <li>Vos signalements de questions</li>
+  <li>Votre dossier d'achats du Premium chez notre fournisseur de paiements intégrés (RevenueCat)</li>
   <li>L'historique des notifications et les données enregistrées sur votre appareil</li>
 </ul>
-<p class="warn">Aucune donnée n'est conservée après la suppression. <strong>La suppression est définitive.</strong></p>
+<p>Seuls restent, sans lien avec votre compte ni votre nom, les rapports de plantage et les statistiques d'utilisation (si vous les aviez acceptées), effacés automatiquement après 90 jours et 2 mois. Les reçus d'achat restent chez Google Play ou l'App Store, selon leurs règles.</p>
+<p class="warn"><strong>La suppression est définitive.</strong></p>
 <p>Voir aussi la <a href="../privacy/">politique de confidentialité</a>.</p>
 `;
 const deleteEn = `
@@ -244,9 +247,12 @@ const deleteEn = `
   <li>Your account (email address, name, password)</li>
   <li>Your profile (country, province)</li>
   <li>All your progress: lessons, quizzes, exams, streaks, "To review" lessons and missed questions</li>
+  <li>Your question reports</li>
+  <li>Your Premium purchase record at our in-app purchase provider (RevenueCat)</li>
   <li>Notification history and data stored on your device</li>
 </ul>
-<p class="warn">No data is kept after deletion. <strong>Deletion is permanent.</strong></p>
+<p>Only crash reports and usage statistics (if you had accepted them) remain, with no link to your account or name; they are erased automatically after 90 days and 2 months. Purchase receipts stay with Google Play or the App Store, under their own rules.</p>
+<p class="warn"><strong>Deletion is permanent.</strong></p>
 <p>See also the <a href="../../privacy/en/">privacy policy</a>.</p>
 `;
 write("delete-account/index.html", page({
