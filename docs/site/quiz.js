@@ -15,3 +15,12 @@ document.querySelectorAll('.sheet').forEach(function (sheet) {
     });
   });
 });
+
+// Accueil : la barre devient bleue avec le petit logo une fois le grand logo passé
+(function () {
+  var nav = document.querySelector('.nav.home');
+  var big = document.querySelector('.hero .logo');
+  if (!nav || !big) return;
+  if (!('IntersectionObserver' in window)) { nav.classList.add('scrolled'); return; }
+  new IntersectionObserver(function (e) { nav.classList.toggle('scrolled', !e[0].isIntersecting); }).observe(big);
+})();

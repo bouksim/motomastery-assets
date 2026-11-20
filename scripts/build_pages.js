@@ -80,6 +80,12 @@ const icons = {
   flame: icon('<path d="M12 22c4 0 7-3 7-7 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8 0 4 3 7 7 7z"/>'),
   lock: icon('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   sound: icon('<path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/>'),
+  bike: icon('<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 9 9h5l4.5 7.5M14 9l-1.5-3H10"/>'),
+  refresh: icon('<path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/>'),
+  user: icon('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
+  search: icon('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'),
+  cards: icon('<rect x="3" y="6" width="13" height="15" rx="2"/><path d="M8 3h11a2 2 0 0 1 2 2v12"/>'),
+  help: icon('<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3 2.5c-.5.2-.5.6-.5 1.5M12 17h.01"/>'),
 };
 // Le chronomètre de la question d'essai n'a pas de stroke-linejoin
 const timer = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>`;
@@ -87,13 +93,15 @@ const timer = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" strok
 const t = {
   fr: {
     privacy: "Confidentialité", del: "Supprimer mon compte", route: "Le parcours", tryIt: "Une question",
-    about: "Prépare l'examen théorique du permis moto au Québec : cours, quiz et examens blancs.",
+    signs: "Panneaux", premium: "Premium", faq: "Questions", cta: "Obtenir l'app",
+    about: "Prépare l'examen théorique du permis moto au Québec : cours, panneaux et examens blancs.",
     legalH: "Légal", contactH: "Contact", privacyFull: "Politique de confidentialité", terms: "Conditions de vente",
     disclaimer: "MotoMastery est une application indépendante, non affiliée à la Société de l'assurance automobile du Québec (SAAQ) ni à aucun organisme gouvernemental.",
   },
   en: {
     privacy: "Privacy", del: "Delete my account", route: "The route", tryIt: "Try a question",
-    about: "Get ready for Quebec's motorcycle knowledge test: lessons, quizzes and mock exams.",
+    signs: "Road signs", premium: "Premium", faq: "Questions", cta: "Get the app",
+    about: "Get ready for Quebec's motorcycle knowledge test: lessons, road signs and mock exams.",
     legalH: "Legal", contactH: "Contact", privacyFull: "Privacy policy", terms: "Terms of sale",
     disclaimer: "MotoMastery is an independent app, not affiliated with the Société de l'assurance automobile du Québec (SAAQ) or any government agency.",
   },
@@ -101,8 +109,9 @@ const t = {
 
 // Tout le style est dans docs/site/style.css, partagé par les pages.
 // root : chemin relatif vers docs/ ; switchTo : lien vers l'autre langue ;
-// script : fichier de docs/site/ à charger en fin de page
-function page({ lang, title, description, body, root, switchTo, canonical, script }) {
+// script : fichier de docs/site/ à charger en fin de page ; isHome : barre
+// transparente sur le bandeau de l'accueil (le grand logo est dans la page)
+function page({ lang, title, description, body, root, switchTo, canonical, script, isHome }) {
   const L = t[lang];
   const p = lang === "fr" ? "" : "en/";
   const other = switchTo
@@ -128,17 +137,19 @@ function page({ lang, title, description, body, root, switchTo, canonical, scrip
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${root}site/style.css">
 </head>
 <body>
-<header class="nav">
+<header class="nav${isHome ? " home" : ""}">
   <div class="wrap">
-    <a class="brand" href="${root}${p}"><img src="${root}site/icon-192.png" alt="" width="34" height="34">MotoMastery</a>
+    <a class="brand-logo" href="${root}${p}"><img src="${root}site/logo-white.png" alt="MotoMastery" width="334" height="154"></a>
     <nav class="links">
       <a class="hide-sm" href="${root}${p}#parcours">${L.route}</a>
-      <a class="hide-sm" href="${root}${p}#essai">${L.tryIt}</a>
-      <a href="${root}privacy/${p}">${L.privacy}</a>
+      <a class="hide-sm" href="${root}${p}#panneaux">${L.signs}</a>
+      <a class="hide-sm" href="${root}${p}#premium">${L.premium}</a>
+      <a class="hide-sm" href="${root}${p}#faq">${L.faq}</a>
+      <a class="cta" href="${root}${p}#telecharger">${L.cta}</a>
       ${other}
     </nav>
   </div>
@@ -295,53 +306,96 @@ write("delete-account/en/index.html", page({
   canonical: "delete-account/en/",
 }));
 
-// Accueil (le contenu des cours est en français, l'interface en français et en anglais)
+// Accueil (cours et examens en français ; interface en français et en anglais).
+// Textes repris de la fiche Play Store (motomastery/store/play-listing.md).
 const home = {
   fr: {
     title: "MotoMastery – Prépare ton permis moto au Québec",
-    description: "Cours, quiz et examens blancs pour réussir l'examen théorique du permis moto au Québec.",
-    hello: "Permis moto au Québec",
+    description: "Cours complets, 204 panneaux et examens blancs pour le test théorique du permis moto au Québec. Sans pub, sans abonnement.",
+    hello: "Permis moto · Québec",
     h1: "Ton permis moto, bien préparé.",
-    lead: "Des cours clairs, des quiz et des examens blancs pour réussir l'examen théorique du permis moto au Québec, à ton rythme.",
-    soon: "Bientôt disponible",
+    lead: "Cours complets, panneaux et examens blancs pour le test théorique moto du Québec.",
+    promises: [["Sans pub", true], ["Sans abonnement"], ["Essai sans compte"]],
     // Badges officiels : à rendre cliquables (lien vers la fiche) une fois l'app publiée
     badges: [
       ["google-play-fr.png", "Disponible sur Google Play", 646, 192],
       ["app-store-fr.svg", "Télécharger dans l'App Store", 127, 40],
     ],
-    note: "Sans publicité · Interface en français et en anglais",
+    soon: "Bientôt sur Google Play et l'App Store",
     heroAlt: "Écran d'accueil de MotoMastery",
-    stats: [["10", "modules"], ["80+", "leçons illustrées"], ["30", "questions par examen"], ["0", "publicité"]],
+    stats: [["12", "modules"], ["109", "leçons illustrées"], ["204", "panneaux"], ["0", "publicité"]],
+    motoLabel: "Pensée pour la moto",
+    motoH: "Tout parle de moto",
+    motoSub: "Équipement, maniement, trajectoires, freinage et adhérence, expliqués du point de vue du motocycliste.",
+    moto: [
+      ["bike", "", "Les règles du Québec", "Le Code de la route et la signalisation, pour le motocycliste."],
+      ["refresh", "amber", "Révise ce qui compte", "Chaque jour, 10 questions choisies parmi tes erreurs."],
+      ["user", "green", "Essaie sans compte", "Commence tout de suite ; crée ton compte plus tard pour garder ta progression."],
+    ],
     routeLabel: "Le parcours",
     routeH: "Trois étapes jusqu'à l'examen",
     routeSub: "Apprends, vérifie ce que tu sais, puis entraîne-toi dans les conditions de l'examen.",
     stage: "Étape",
     steps: [
       {
-        h: "Apprendre", p: "Tout le contenu de l'examen, découpé en leçons courtes et illustrées.",
+        h: "Apprendre", p: "12 modules et 109 leçons courtes et illustrées, de la première sortie à la conduite avancée.",
         rows: [
-          ["book", "", "Des cours complets", "Équipement, maniement, trajectoires, circulation, météo, mécanique, urgences et réglementation."],
+          ["book", "", "Des cours complets", "Équipement, mécanique, techniques de base, circulation, météo et urgences, autoroute, pilotage et réglementation."],
           ["sound", "amber", "À lire ou à écouter", "Chaque leçon peut être lue à voix haute, pour réviser autrement."],
         ],
         shot: "02-lecon", alt: "Une leçon illustrée dans l'application",
       },
       {
-        h: "Vérifier", p: "Un quiz à la fin des leçons et des modules, avec l'explication de chaque réponse.",
+        h: "Vérifier", p: "Un quiz à la fin des leçons et des modules, et chaque jour une révision de tes erreurs.",
         rows: [
           ["check", "green", "Des quiz expliqués", "Tu sais tout de suite pourquoi une réponse est la bonne."],
-          ["bookmark", "purple", "À revoir", "Tes erreurs sont gardées de côté : révise-les jusqu'à ce que tu les maîtrises."],
+          ["bookmark", "purple", "À revoir", "Une erreur disparaît quand tu la réussis deux fois de suite."],
         ],
-        shot: "03-quiz", alt: "Un quiz dans l'application",
+        shot: "07-a-revoir", alt: "La révision du jour dans l'application",
       },
       {
-        h: "S'entraîner", p: "Examens thématiques et examen blanc chronométré, avec des questions différentes à chaque essai.",
+        h: "S'entraîner", p: "9 examens par thème, illimités, et des examens blancs chronométrés, différents à chaque essai.",
         rows: [
-          ["exam", "", "Une correction détaillée", "Chaque question revue à la fin de l'examen."],
+          ["exam", "", "Tes points faibles", "Ton score par famille de questions, pour savoir quoi revoir."],
           ["flame", "amber", "Reste motivé", "Progression par module, série de jours d'étude et rappels que tu peux désactiver."],
         ],
-        shot: "05-examen", alt: "Un examen blanc dans l'application",
+        shot: "06-examens", alt: "Les examens dans l'application",
       },
     ],
+    signsLabel: "Signalisation",
+    signsH: "204 panneaux à connaître",
+    signsSub: "Ce que chaque panneau du Québec signifie, et ce qu'il faut retenir à moto.",
+    signsCardH: "Apprends-les par cœur",
+    signsCardP: "Les panneaux ratés reviennent jusqu'à ce que tu les saches.",
+    signsRows: [
+      ["search", "", "Le répertoire", "204 panneaux, par famille, avec une recherche."],
+      ["cards", "purple", "Des cartes-éclair", "Retourne la carte, dis si tu savais."],
+      ["help", "green", "408 questions de panneaux", "Pour vérifier que tu les reconnais, et un panneau du jour sur l'accueil."],
+    ],
+    signsShots: [["03-panneaux", "Le répertoire des panneaux"], ["04-carte-eclair", "Une carte-éclair de panneau"]],
+    plansLabel: "Gratuit ou Premium",
+    plansH: "Premium, en un seul achat",
+    plansSub: "Sans abonnement. Les cours, les examens par thème et le répertoire des panneaux restent gratuits.",
+    free: {
+      tag: "Gratuit", h: "Pour bien apprendre", sub: "Sans publicité, sans carte de crédit.",
+      items: [
+        "12 modules et 109 leçons, avec leurs quiz",
+        "9 examens par thème, illimités",
+        "Le répertoire des 204 panneaux et les cartes-éclair des incontournables",
+        "Des examens blancs : 3 pour commencer, puis 1 par jour",
+        "La révision de tes erreurs",
+      ],
+    },
+    premium: {
+      tag: "Premium", h: "Pour viser la réussite", sub: "Un seul achat, sans abonnement.",
+      items: [
+        "Une banque de questions exclusives",
+        "Des examens blancs illimités",
+        "Trois examens de signalisation",
+        "La révision ciblée de tes points faibles",
+        "Les cartes-éclair de toutes les familles de panneaux",
+      ],
+    },
     tryLabel: "Essaie",
     tryH: "Une question, tout de suite",
     trySub: "Tirée de nos examens blancs. Choisis ta réponse.",
@@ -352,57 +406,111 @@ const home = {
       ok: "Bonne réponse.", ko: "Mauvaise réponse.",
       why: "Au-delà d'environ 25 km/h, on contre-braque : pousser la poignée gauche incline la moto vers la gauche.",
     },
-    dataH: "Tes données respectées",
+    dataH: "Sans publicité, tes données respectées",
     data: "Ta progression te suit sur tous tes appareils. Tu peux supprimer ton compte et toutes tes données à tout moment, depuis l'application.",
     more: "En savoir plus",
+    faqLabel: "Questions",
+    faqH: "Questions fréquentes",
+    faq: [
+      ["MotoMastery est-elle une application officielle ?", "Non. MotoMastery est une application indépendante, non affiliée à la SAAQ. Elle t'aide à te préparer à l'examen théorique du permis moto au Québec ; pour les règles officielles, consulte le guide de la SAAQ."],
+      ["Qu'est-ce qui est gratuit ?", "Les 12 modules et leurs leçons, les 9 examens par thème, le répertoire des 204 panneaux et des examens blancs. Premium ajoute des questions exclusives, des examens blancs illimités et la révision ciblée, en un seul achat, sans abonnement."],
+      ["Faut-il créer un compte ?", "Non pour commencer : tu peux essayer l'application sans compte. Un compte gratuit garde ta progression et la retrouve sur tous tes appareils."],
+      ["Sur quels appareils ?", "Android bientôt sur Google Play, puis iPhone sur l'App Store. L'interface est en français ou en anglais ; les cours et les examens sont en français."],
+      ["Que deviennent mes données ?", "Aucune publicité. Tu peux supprimer ton compte et toutes tes données à tout moment, directement depuis l'application."],
+    ],
+    finalH: "Prêt pour ton examen ?",
+    finalP: "Commence par une leçon, gratuitement, sans créer de compte.",
+    finalSoon: "Bientôt disponible",
   },
   en: {
     title: "MotoMastery – Get your Quebec motorcycle licence",
-    description: "Lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test.",
-    hello: "Quebec motorcycle licence",
+    description: "Complete lessons, 204 road signs and mock exams for Quebec's motorcycle knowledge test. No ads, no subscription. Lessons and exams in French.",
+    hello: "Motorcycle licence · Quebec",
     h1: "Your motorcycle licence, well prepared.",
-    lead: "Clear lessons, quizzes and mock exams to pass Quebec's motorcycle knowledge test, at your own pace.",
-    soon: "Coming soon",
+    lead: "Complete lessons, road signs and mock exams for Quebec's motorcycle knowledge test. Lessons and exams are in French.",
+    promises: [["No ads", true], ["No subscription"], ["Try without an account"]],
     badges: [
       ["google-play-en.png", "Get it on Google Play", 564, 168],
       ["app-store-en.svg", "Download on the App Store", 120, 40],
     ],
-    note: "No ads · Interface in French and English · Course content in French",
+    soon: "Coming soon to Google Play and the App Store",
     heroAlt: "MotoMastery home screen",
-    stats: [["10", "modules"], ["80+", "illustrated lessons"], ["30", "questions per exam"], ["0", "ads"]],
+    stats: [["12", "modules"], ["109", "illustrated lessons"], ["204", "road signs"], ["0", "ads"]],
+    motoLabel: "Made for motorcycles",
+    motoH: "Everything is about riding",
+    motoSub: "Gear, handling, lines, braking and grip, explained from the rider's point of view.",
+    moto: [
+      ["bike", "", "Quebec's rules", "The Highway Safety Code and road signs, for motorcyclists."],
+      ["refresh", "amber", "Review what matters", "Every day, 10 questions picked from your mistakes."],
+      ["user", "green", "Try without an account", "Start right away; create your account later to keep your progress."],
+    ],
     routeLabel: "The route",
     routeH: "Three stages to the test",
     routeSub: "Learn, check what you know, then practise in real exam conditions.",
     stage: "Stage",
     steps: [
       {
-        h: "Learn", p: "Everything the test covers, split into short illustrated lessons.",
+        h: "Learn", p: "12 modules and 109 short illustrated lessons, from your first ride to advanced riding.",
         rows: [
-          ["book", "", "Complete lessons", "Gear, handling, lines, traffic, weather, mechanics, emergencies and regulations."],
+          ["book", "", "Complete lessons", "Gear, mechanics, basic techniques, traffic, weather and emergencies, highways, riding skills and regulations."],
           ["sound", "amber", "Read or listen", "Every lesson can be read aloud, for another way to review."],
         ],
         shot: "02-lecon", alt: "An illustrated lesson in the app",
       },
       {
-        h: "Check", p: "A quiz at the end of lessons and modules, with an explanation for every answer.",
+        h: "Check", p: "A quiz at the end of lessons and modules, and a daily review of your mistakes.",
         rows: [
           ["check", "green", "Explained quizzes", "You know right away why an answer is the right one."],
-          ["bookmark", "purple", "To review", "Your mistakes are set aside: review them until you master them."],
+          ["bookmark", "purple", "To review", "A mistake goes away once you get it right twice in a row."],
         ],
-        shot: "03-quiz", alt: "A quiz in the app",
+        shot: "07-a-revoir", alt: "The daily review in the app",
       },
       {
-        h: "Practise", p: "Topic exams and a timed mock exam, with different questions each time.",
+        h: "Practise", p: "9 unlimited topic exams and timed mock exams, with different questions each time.",
         rows: [
-          ["exam", "", "Detailed corrections", "Every question reviewed at the end of the exam."],
+          ["exam", "", "Your weak spots", "Your score by question family, so you know what to review."],
           ["flame", "amber", "Stay motivated", "Progress by module, study streaks and reminders you can turn off."],
         ],
-        shot: "05-examen", alt: "A mock exam in the app",
+        shot: "06-examens", alt: "The exams in the app",
       },
     ],
+    signsLabel: "Road signs",
+    signsH: "204 road signs to know",
+    signsSub: "What every Quebec road sign means, and what to remember on a motorcycle.",
+    signsCardH: "Learn them by heart",
+    signsCardP: "Signs you miss come back until you know them.",
+    signsRows: [
+      ["search", "", "The directory", "204 signs, by family, with search."],
+      ["cards", "purple", "Flashcards", "Flip the card, say whether you knew it."],
+      ["help", "green", "408 sign questions", "To check that you recognise them, plus a sign of the day on the home screen."],
+    ],
+    signsShots: [["03-panneaux", "The road sign directory"], ["04-carte-eclair", "A road sign flashcard"]],
+    plansLabel: "Free or Premium",
+    plansH: "Premium, one purchase",
+    plansSub: "No subscription. Lessons, topic exams and the road sign directory stay free.",
+    free: {
+      tag: "Free", h: "To learn well", sub: "No ads, no credit card.",
+      items: [
+        "12 modules and 109 lessons, with their quizzes",
+        "9 unlimited topic exams",
+        "The 204-sign directory and the must-know flashcards",
+        "Mock exams: 3 to start, then 1 a day",
+        "A review of your mistakes",
+      ],
+    },
+    premium: {
+      tag: "Premium", h: "To aim for success", sub: "One purchase, no subscription.",
+      items: [
+        "A bank of exclusive questions",
+        "Unlimited mock exams",
+        "Three road sign exams",
+        "A targeted review of your weak spots",
+        "Flashcards for every road sign family",
+      ],
+    },
     tryLabel: "Try it",
     tryH: "One question, right now",
-    trySub: "Taken from our mock exams. Pick your answer.",
+    trySub: "Taken from our mock exams (in French in the app). Pick your answer.",
     quiz: {
       exam: "Mock exam", count: "Question 8 of 30", tag: "Single answer",
       q: "At 60 km/h, to start a left turn, you push on…",
@@ -410,9 +518,21 @@ const home = {
       ok: "Correct.", ko: "Wrong answer.",
       why: "Above about 25 km/h, you countersteer: pushing the left handgrip leans the motorcycle to the left.",
     },
-    dataH: "Your data, respected",
+    dataH: "No ads, your data respected",
     data: "Your progress follows you on all your devices. You can delete your account and all your data at any time, right from the app.",
     more: "Learn more",
+    faqLabel: "Questions",
+    faqH: "Frequently asked questions",
+    faq: [
+      ["Is MotoMastery an official app?", "No. MotoMastery is an independent app, not affiliated with the SAAQ. It helps you prepare for Quebec's motorcycle knowledge test; for the official rules, see the SAAQ guide."],
+      ["Is the app in English?", "The interface is in English or French, but the lessons and exams are in French, like the test content you study."],
+      ["What is free?", "The 12 modules and their lessons, the 9 topic exams, the 204-sign directory and mock exams. Premium adds exclusive questions, unlimited mock exams and targeted review, as one purchase with no subscription."],
+      ["Do I need an account?", "Not to start: you can try the app without an account. A free account keeps your progress and brings it to all your devices."],
+      ["What happens to my data?", "No ads. You can delete your account and all your data at any time, right from the app."],
+    ],
+    finalH: "Ready for your test?",
+    finalP: "Start with a lesson, for free, without creating an account.",
+    finalSoon: "Coming soon",
   },
 };
 
@@ -422,6 +542,9 @@ const segments = (on, total) =>
 
 const row = ([ic, color, h, d]) =>
   `<div class="row"><span class="tile${color ? " " + color : ""}">${icons[ic]}</span><div><strong>${h}</strong><span>${d}</span></div></div>`;
+
+const badges = (H, root) =>
+  `<div class="badges">${H.badges.map(([f, alt, w, h]) => `<img src="${root}site/${f}" alt="${alt}" width="${w}" height="${h}">`).join("")}</div>`;
 
 function step(H, s, i, root) {
   const n = H.steps.length;
@@ -433,10 +556,19 @@ function step(H, s, i, root) {
         ${segments(i + 1, n)}
         ${s.rows.map(row).join("\n        ")}
       </div>
-      <figure><img src="${root}site/${s.shot}.webp" alt="${s.alt}" width="540" height="1080" loading="lazy"></figure>
+      <figure><img src="${root}site/${s.shot}.webp" alt="${s.alt}" width="540" height="1054" loading="lazy"></figure>
     </article>
 `;
 }
+
+const plan = (P, cls) => `<div class="card plan${cls}">
+        <span class="tag">${P.tag}</span>
+        <h3>${P.h}</h3>
+        <p class="sub">${P.sub}</p>
+        <ul>
+          ${P.items.map((it) => `<li>${it}</li>`).join("\n          ")}
+        </ul>
+      </div>`;
 
 function homeBody(lang, root) {
   const H = home[lang];
@@ -446,14 +578,23 @@ function homeBody(lang, root) {
 <section class="hero">
   <div class="wrap">
     <div class="copy">
+      <img class="logo" src="${root}site/logo-white.png" alt="MotoMastery" width="334" height="154">
       <p class="hello">${H.hello}</p>
       <h1>${H.h1}</h1>
       <p class="lead">${H.lead}</p>
-      <div class="stores"><span class="soon">${H.soon}</span><div class="badges">${H.badges.map(([f, alt, w, h]) => `<img src="${root}site/${f}" alt="${alt}" width="${w}" height="${h}">`).join("")}</div></div>
-      <p class="note">${H.note}</p>
+      <ul class="promises">
+        ${H.promises.map(([s, gold]) => `<li${gold ? ' class="gold"' : ""}>${s}</li>`).join("")}
+      </ul>
+      <div class="stores">${badges(H, root)}
+        <p class="soon-line">${H.soon}</p></div>
     </div>
     <div class="visual">
-      <div class="phone"><img src="${root}site/01-accueil.webp" alt="${H.heroAlt}" width="540" height="1080"></div>
+      <div class="signs" aria-hidden="true">
+        <div class="sign s1"><img src="${root}site/signs/P-70-2.png" alt=""></div>
+        <div class="sign s2"><img src="${root}site/signs/D-310-2.png" alt=""></div>
+        <div class="sign s3"><img src="${root}site/signs/P-10.png" alt=""></div>
+      </div>
+      <div class="phone"><img src="${root}site/01-accueil.webp" alt="${H.heroAlt}" width="540" height="1054"></div>
     </div>
   </div>
 </section>
@@ -464,6 +605,19 @@ function homeBody(lang, root) {
   </div>
 </div>
 
+<section>
+  <div class="wrap">
+    <div class="head first">
+      <span class="label">${H.motoLabel}</span>
+      <h2>${H.motoH}</h2>
+      <p>${H.motoSub}</p>
+    </div>
+    <div class="moto">
+      ${H.moto.map(([ic, color, h, d]) => `<div class="card"><span class="tile${color ? " " + color : ""}">${icons[ic]}</span><div><strong>${h}</strong><span class="t">${d}</span></div></div>`).join("\n      ")}
+    </div>
+  </div>
+</section>
+
 <section id="parcours">
   <div class="wrap">
     <div class="head">
@@ -473,6 +627,38 @@ function homeBody(lang, root) {
     </div>
 
     ${H.steps.map((s, i) => step(H, s, i, root)).join("\n    ")}
+  </div>
+</section>
+
+<section id="panneaux">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">${H.signsLabel}</span>
+      <h2>${H.signsH}</h2>
+      <p>${H.signsSub}</p>
+    </div>
+    <div class="signs-grid">
+      <div class="card">
+        <h3>${H.signsCardH}</h3>
+        <p>${H.signsCardP}</p>
+        ${H.signsRows.map(row).join("\n        ")}
+      </div>
+      ${H.signsShots.map(([f, alt], i) => `<figure${i ? ' class="low"' : ""}><img src="${root}site/${f}.webp" alt="${alt}" width="540" height="1054" loading="lazy"></figure>`).join("\n      ")}
+    </div>
+  </div>
+</section>
+
+<section id="premium">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">${H.plansLabel}</span>
+      <h2>${H.plansH}</h2>
+      <p>${H.plansSub}</p>
+    </div>
+    <div class="plans">
+      ${plan(H.free, "")}
+      ${plan(H.premium, " premium")}
+    </div>
   </div>
 </section>
 
@@ -504,6 +690,28 @@ function homeBody(lang, root) {
     <a class="pill pill-outline" href="${root}privacy/${p}">${H.more}</a>
   </div>
 </div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">${H.faqLabel}</span>
+      <h2>${H.faqH}</h2>
+    </div>
+    <div class="faq">
+      ${H.faq.map(([q, a], i) => `<details${i ? "" : " open"}><summary>${q}</summary><p>${a}</p></details>`).join("\n      ")}
+    </div>
+  </div>
+</section>
+
+<section class="final" id="telecharger">
+  <div class="wrap">
+    <img class="final-logo" src="${root}site/logo-white.png" alt="" width="334" height="154">
+    <h2>${H.finalH}</h2>
+    <p>${H.finalP}</p>
+    ${badges(H, root)}
+    <p class="soon-line">${H.finalSoon}</p>
+  </div>
+</section>
 `;
 }
 
@@ -516,6 +724,7 @@ write("index.html", page({
   canonical: "",
   body: homeBody("fr", "./"),
   script: "quiz.js",
+  isHome: true,
 }));
 write("en/index.html", page({
   lang: "en",
@@ -526,6 +735,7 @@ write("en/index.html", page({
   canonical: "en/",
   body: homeBody("en", "../"),
   script: "quiz.js",
+  isHome: true,
 }));
 
 // Pas de traitement Jekyll : les fichiers sont servis tels quels
