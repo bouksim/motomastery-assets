@@ -219,9 +219,9 @@ footer.site .legal { grid-column:1/-1; border-top:1px solid var(--divider); padd
 .hero .logo { width:150px; max-width:50%; margin:0 0 20px; }
 .hero .hello { font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.78); }
 .promises { list-style:none; display:flex; flex-wrap:wrap; gap:10px; margin:0 0 28px; padding:0; font-size:15px; }
-.promises { font-size:16px; gap:12px; }
-.promises li { display:flex; align-items:center; gap:8px; background:#fff; color:var(--primary); border-radius:999px;
-  padding:9px 18px 9px 14px; font-weight:700; box-shadow:0 10px 24px -12px rgba(8,24,70,.55); }
+.promises { font-size:15px; gap:8px; }
+.promises li { display:flex; align-items:center; gap:7px; background:#fff; color:var(--primary); border-radius:999px;
+  padding:8px 14px 8px 12px; font-weight:700; white-space:nowrap; box-shadow:0 10px 24px -12px rgba(8,24,70,.55); }
 .promises li svg { flex:none; }
 .promises li.gold { background:#ffb648; color:#3a2600; }
 .soon-line { margin:10px 0 0; font-size:14px; color:rgba(255,255,255,.8); }

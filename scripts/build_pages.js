@@ -9,6 +9,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const legalDir = process.argv[2];
 if (!legalDir) {
@@ -19,6 +20,11 @@ const docs = path.join(__dirname, "..", "docs");
 const contact = "support@motomastery.app";
 const siteUrl = "https://motomastery.app";
 const year = new Date().getFullYear();
+
+// Version des fichiers partagés (empreinte du contenu) : un navigateur ne
+// garde pas l'ancien style en cache après une mise à jour du site
+const version = (name) =>
+  crypto.createHash("sha1").update(fs.readFileSync(path.join(docs, "site", name))).digest("hex").slice(0, 8);
 
 const escape = (s) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -138,7 +144,7 @@ function page({ lang, title, description, body, root, switchTo, canonical, scrip
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${root}site/style.css">
+<link rel="stylesheet" href="${root}site/style.css?v=${version("style.css")}">
 </head>
 <body>
 <header class="nav${isHome ? " home" : ""}">
@@ -176,7 +182,7 @@ ${body}
     <p class="legal">© ${year} Mastery Software · ${L.disclaimer}</p>
   </div>
 </footer>
-${script ? `<script src="${root}site/${script}" defer></script>
+${script ? `<script src="${root}site/${script}?v=${version(script)}" defer></script>
 ` : ""}</body>
 </html>
 `;
