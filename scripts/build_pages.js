@@ -315,7 +315,7 @@ const home = {
     hello: "Permis moto · Québec",
     h1: "Ton permis moto, bien préparé.",
     lead: "Cours complets, panneaux et examens blancs pour le test théorique moto du Québec.",
-    promises: [["Sans pub", true], ["Sans abonnement"], ["Essai sans compte"]],
+    promises: [["Sans pub", "noads", true], ["Sans abonnement", "card"], ["Essai sans compte", "user"]],
     // Badges officiels : à rendre cliquables (lien vers la fiche) une fois l'app publiée
     badges: [
       ["google-play-fr.png", "Disponible sur Google Play", 646, 192],
@@ -428,7 +428,7 @@ const home = {
     hello: "Motorcycle licence · Quebec",
     h1: "Your motorcycle licence, well prepared.",
     lead: "Complete lessons, road signs and mock exams for Quebec's motorcycle knowledge test. Lessons and exams are in French.",
-    promises: [["No ads", true], ["No subscription"], ["Try without an account"]],
+    promises: [["No ads", "noads", true], ["No subscription", "card"], ["Try without an account", "user"]],
     badges: [
       ["google-play-en.png", "Get it on Google Play", 564, 168],
       ["app-store-en.svg", "Download on the App Store", 120, 40],
@@ -536,6 +536,15 @@ const home = {
   },
 };
 
+// Petites icônes des promesses (couleur du texte)
+const smallIcon = (d) =>
+  `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const promiseIcons = {
+  noads: smallIcon('<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>'),
+  card: smallIcon('<rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10.5h18M7 15h4"/>'),
+  user: smallIcon('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
+};
+
 // Barre de progression en segments : les `on` premiers sont remplis
 const segments = (on, total) =>
   `<div class="segments" aria-hidden="true">${Array.from({ length: total }, (_, i) => (i < on ? '<i class="on"></i>' : "<i></i>")).join("")}</div>`;
@@ -583,7 +592,7 @@ function homeBody(lang, root) {
       <h1>${H.h1}</h1>
       <p class="lead">${H.lead}</p>
       <ul class="promises">
-        ${H.promises.map(([s, gold]) => `<li${gold ? ' class="gold"' : ""}>${s}</li>`).join("")}
+        ${H.promises.map(([s, ic, gold]) => `<li${gold ? ' class="gold"' : ""}>${promiseIcons[ic]}${s}</li>`).join("")}
       </ul>
       <div class="stores">${badges(H, root)}
         <p class="soon-line">${H.soon}</p></div>
