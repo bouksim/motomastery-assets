@@ -421,7 +421,7 @@ const home = {
       ["MotoMastery est-elle une application officielle ?", "Non. MotoMastery est une application indépendante, non affiliée à la SAAQ. Elle t'aide à te préparer à l'examen théorique du permis moto au Québec ; pour les règles officielles, consulte le guide de la SAAQ."],
       ["Qu'est-ce qui est gratuit ?", "Les 12 modules et leurs leçons, les 9 examens par thème, le répertoire des 204 panneaux et des examens blancs. Premium ajoute des questions exclusives, des examens blancs illimités et la révision ciblée, en un seul achat, sans abonnement."],
       ["Faut-il créer un compte ?", "Non pour commencer : tu peux essayer l'application sans compte. Un compte gratuit garde ta progression et la retrouve sur tous tes appareils."],
-      ["Sur quels appareils ?", "Android bientôt sur Google Play, puis iPhone sur l'App Store. L'interface est en français ou en anglais ; les cours et les examens sont en français."],
+      ["Sur quels appareils ?", "Android bientôt sur Google Play, puis iPhone sur l'App Store. Ta progression te suit d'un appareil à l'autre."],
       ["Que deviennent mes données ?", "Aucune publicité. Tu peux supprimer ton compte et toutes tes données à tout moment, directement depuis l'application."],
     ],
     finalH: "Prêt pour ton examen ?",
@@ -531,7 +531,7 @@ const home = {
     faqH: "Frequently asked questions",
     faq: [
       ["Is MotoMastery an official app?", "No. MotoMastery is an independent app, not affiliated with the SAAQ. It helps you prepare for Quebec's motorcycle knowledge test; for the official rules, see the SAAQ guide."],
-      ["Is the app in English?", "The interface is in English or French, but the lessons and exams are in French, like the test content you study."],
+      ["Is the app in English?", "No. The app, its lessons and its exams are in French for now. An English version may come later."],
       ["What is free?", "The 12 modules and their lessons, the 9 topic exams, the 204-sign directory and mock exams. Premium adds exclusive questions, unlimited mock exams and targeted review, as one purchase with no subscription."],
       ["Do I need an account?", "Not to start: you can try the app without an account. A free account keeps your progress and brings it to all your devices."],
       ["What happens to my data?", "No ads. You can delete your account and all your data at any time, right from the app."],
